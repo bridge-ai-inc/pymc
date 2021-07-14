@@ -9,6 +9,7 @@ __pycache__/
 # simulation binary files and other unnecessary files
 *_F.bin
 *.vscode
+.DS_Store
 
 # Distribution / packaging
 .Python
