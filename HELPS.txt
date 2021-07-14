@@ -1,0 +1,91 @@
+
+
+NORMALLY HUMANS WRITE CODE. IN DEEP LEARNING, OPTIMIZATION WRITES CODE, YOU ARE CREATING INPUT/OUTPUT SPECIFICATIONS AND THEN YOU HAVE LOTS OF EXAMPLES OF IT, THEN THE OPTIMIZATION WRITES THE CODE, SOMETIMES BETTER THAN HUMANS.
+
+
+
+
+MATPLOTLIB
+
+'''
+# matplotlib
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.imshow(xs, cmap='jet')
+plt.show()
+
+'''
+
+
+
+PLOTLY INTERACTIVE 3D PLOT
+
+'''
+data = [
+    go.Surface(z=xs)
+]
+
+layout = go.Layout(
+    title='Tissue structure',
+    autosize=False,
+    width=500,
+    height=500,
+    margin=dict(
+        l=65,
+        r=50,
+        b=65,
+        t=90
+    )
+)
+fig = go.Figure(data=data, layout=layout)
+po.plot(fig, filename='tissue-3D.html')
+
+'''
+
+
+
+MULTIPROCESSING
+# One can create a pool of processes which will carry out tasks submitted to
+# it with the Pool class.
+
+# A process pool object which controls a pool of worker processes to which
+# jobs can be submitted. It supports asynchronous results with timeouts and
+# callbacks and has a parallel map implementation.
+
+import time
+from multiprocessing import Pool
+
+
+
+
+
+#def sum_square(number):
+#    s = 0
+#    for i in range(number):
+#        s += i * i
+#    return s
+
+
+#def sum_square_with_mp(numbers):
+#    start_time = time.time()
+#    p = Pool(6)
+#    result = p.map(sum_square, numbers)
+#    p.close()
+#    p.join()
+#    end_time = time.time() - start_time
+#    print(f"Processing {len(numbers)} numbers took {end_time} time using multiprocessing.")
+
+
+#def sum_square_no_mp(numbers):
+#    start_time = time.time()
+#    result = []
+#    for i in numbers:
+#        result.append(sum_square(i))
+#    end_time = time.time() - start_time
+#    print(f"Processing {len(numbers)} numbers took {end_time} time using serial processing.")
+
+
+if __name__ == '__main__':
+    #numbers = range(10000)
+    #sum_square_with_mp(numbers)
+    #sum_square_no_mp(numbers)
