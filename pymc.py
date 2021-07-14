@@ -37,7 +37,9 @@ class CreateTissue:
 
     tissueType = 'Cartilage'
     tissueLayers = 3
-    thickness = 1
+    tissueThicness = 0.0
+    # tissueWidth = 0.0
+    binsize = 0.005
 
     def __init__(self, SZ, MZ, DZ, nbins):
         self.SZ = SZ        # SZ = % of superficial zone
@@ -82,9 +84,10 @@ class CreateTissue:
 
     def view(self):
         tissue2d = self.T[:, :, int(self.nbins/2)]
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.imshow(tissue2d, cmap='jet')
+        fig, ax = plt.subplots(figsize=(6, 6))
+        ax.imshow(tissue2d, cmap='jet', interpolation='none', 
+                  extent=[0, self.binsize*self.nbins, self.binsize*self.nbins, 0])
+        ax.set_aspect('auto')
         plt.show()
 
     
@@ -102,7 +105,7 @@ class CreateTissue:
     def visualize_fluence(self):
         self.F = np.fromfile('{}_F.bin'.format(self.id), dtype=np.float32)
         outTissue3d = self.F.reshape(self.nbins, self.nbins, self.nbins)
-        outTissue2d = outTissue3d[:, :, self.nbins/2]
+        outTissue2d = outTissue3d[:, :, int(self.nbins/2)]
 
         fig = plt.figure()
         ax = fig.add_subplot(111)
