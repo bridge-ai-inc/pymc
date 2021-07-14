@@ -8,6 +8,7 @@ __pycache__/
 
 # simulation binary files and other unnecessary files
 *_F.bin
+*_T.bin
 *.vscode
 .DS_Store
 
