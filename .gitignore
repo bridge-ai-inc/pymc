@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+# simulation binary files and other unnecessary files
+*_F.bin
+*.vscode
+
 # Distribution / packaging
 .Python
 build/
