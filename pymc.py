@@ -1,5 +1,5 @@
 '''
-About  : Python class to create tissue objects with know layer thickness
+About  : Python class to create tissue objects with known layer thickness
          and visualize Monte Carlo simulation outputs
 Author : Isaac Afara
 Date   : 14.07.2021
@@ -31,14 +31,14 @@ from datetime import date
 import matplotlib.pyplot as plt
 import os
 from multiprocessing import Process, current_process
+import cv2
+import tqdm
 
 
 class CreateTissue:
 
     tissueType = 'Cartilage'
     tissueLayers = 3
-    tissueThicness = 0.0
-    # tissueWidth = 0.0
     binsize = 0.005
 
     def __init__(self, SZ, MZ, DZ, nbins):
@@ -74,7 +74,7 @@ class CreateTissue:
 
         self.T = tissue3d
         self.T.astype('int8').tofile(self.id + '_T.bin')
-        print('{} has been successfully saved as {}_T.bin'.format(self.id, self.id))
+        print('{} has been created and saved as {}_T.bin'.format(self.id, self.id))
 
 
     def set_thickness(self, thickness):
@@ -91,9 +91,9 @@ class CreateTissue:
         plt.show()
 
     
-    def run_monte_carlo(self, time):
-        self.time = time
-        # create .mci file here
+    def run_monte_carlo(self, sim_time, wavelength = None):
+        self.time = sim_time
+        self.wavelength = []    >>> # create .mci file here
         d = os.system('./mcxyz ' + self.id)
         print('simulating tissue ' + self.id)
         print('Error Code:', d, '...No errors!')
@@ -102,17 +102,45 @@ class CreateTissue:
         print(f"Process Name: {current_process().self.id}")
 
 
-    def visualize_fluence(self):
+    def visualize_fluence(self, video = False):
         self.F = np.fromfile('{}_F.bin'.format(self.id), dtype=np.float32)
         outTissue3d = self.F.reshape(self.nbins, self.nbins, self.nbins)
         outTissue2d = outTissue3d[:, :, int(self.nbins/2)]
 
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        im1 = ax.imshow(outTissue2d,vmin=0,vmax=10,cmap='gnuplot2') # cmap='jet'
-        cbar = plt.colorbar(im1)
-        cbar.set_label('Light intensity')
-        plt.show() 
+        # fig, ax = plt.subplots(figsize=(6, 6))
+        # im1 = ax.imshow(outTissue2d,vmin=0,vmax=10,cmap='gnuplot2') # cmap='jet'
+        # cbar = plt.colorbar(im1)
+        # cbar.set_label('Light intensity')
+        # plt.show() 
+
+        if video == True:
+            self.imgs = []
+            for i in range(len(self.wavelength)):
+                tissueName = 'cartilage_' + \
+                    str(self.wavelength['nm'][i])+'_Fzx.jpg'  # OR '_Fzy.jpg'
+                print(tissueName)
+                self.img.append(cv2.imread(tissueName))
+
+            height, width, layers = img[1].shape
+            video = cv2.VideoWriter('ac_fluence.mp4', -1, 1, (width, height))
+
+            for j in range(len(self.wavelength)):
+                video.write(img[j])
+
+            cv2.destroyAllWindows()
+            video.release()
+        else:
+
+            for i in tqdm(range(len(self.wavelength))):
+                tissueName = 'tissue_'+str(self.wavelength['nm'][i])
+                #print(tissueName)
+                st = lookfluence(float(self.wavelength['nm'][i]), tissueName, nargout=1)
+                if st == 1:
+                    print('Tissue structure successfully visualized!')
+                else:
+                    print('Error, check input args or see look.m!')
+
+    print('All tissue files created and visualized)')
 
 
 
