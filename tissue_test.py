@@ -6,7 +6,7 @@ from pymc import CreateTissue
 
 # Create tissue object
 # Note: This creates a 200*200*200 tissue structure 
-# and saves it as a binary file.
+#       and saves it as a binary file.
 tissue = CreateTissue(0.1, 0.15, 0.75, 200)
 
 print(' ')

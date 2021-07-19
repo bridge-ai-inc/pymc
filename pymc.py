@@ -93,7 +93,7 @@ class CreateTissue:
     
     def run_monte_carlo(self, sim_time, wavelength = None):
         self.time = sim_time
-        self.wavelength = []    >>> # create .mci file here
+        self.wavelength = []     # >>> create .mci file here
         d = os.system('./mcxyz ' + self.id)
         print('simulating tissue ' + self.id)
         print('Error Code:', d, '...No errors!')
