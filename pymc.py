@@ -94,12 +94,21 @@ class CreateTissue:
     def run_monte_carlo(self, sim_time, wavelength = None):
         self.time = sim_time
         self.wavelength = []     # >>> create .mci file here
-        d = os.system('./mcxyz ' + self.id)
-        print('simulating tissue ' + self.id)
-        print('Error Code:', d, '...No errors!')
 
-        print(f"Process ID: {os.getpid()}") # can also use the "current_process" function
-        print(f"Process Name: {current_process().self.id}")
+        self._Hmci = [self.time, self.nbins, self.nbins, self.nbins,
+                        self.binsize, self.binsize, self.binsize, 0, 0, 2]
+        file=open(self.id + '_H.mci','w')
+        for items in self._Hmci:
+            file.writelines(str(items)+'\n')
+        file.close()
+        print('Monte Carlo metasata file written.')
+
+        # d = os.system('./mcxyz ' + self.id)
+        # print('simulating tissue ' + self.id)
+        # print('Error Code:', d, '...No errors!')
+
+        # print(f"Process ID: {os.getpid()}") # can also use the "current_process" function
+        # print(f"Process Name: {current_process().self.id}")
 
 
     def visualize_fluence(self, video = False):
@@ -140,7 +149,7 @@ class CreateTissue:
                 else:
                     print('Error, check input args or see look.m!')
 
-    print('All tissue files created and visualized)')
+    # print('All tissue files created and visualized')
 
 
 
