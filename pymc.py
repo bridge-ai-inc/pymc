@@ -101,7 +101,7 @@ class CreateTissue:
         for items in self._Hmci:
             file.writelines(str(items)+'\n')
         file.close()
-        print('Monte Carlo metasata file written.')
+        print('Monte Carlo metadata file written.')
 
         # d = os.system('./mcxyz ' + self.id)
         # print('simulating tissue ' + self.id)
