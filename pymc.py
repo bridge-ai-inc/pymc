@@ -117,10 +117,13 @@ class CreateTissue:
         outTissue2d = outTissue3d[:, :, int(self.nbins/2)]
 
         # fig, ax = plt.subplots(figsize=(6, 6))
-        # im1 = ax.imshow(outTissue2d,vmin=0,vmax=10,cmap='gnuplot2') # cmap='jet'
+        # im1 = ax.imshow(outTissue2d,xtent=[0, self.binsize*self.nbins, self.binsize*self.nbins, 0],
+        #       cmap='gnuplot2') 
         # cbar = plt.colorbar(im1)
+        # ax.set_aspect('auto')
         # cbar.set_label('Light intensity')
         # plt.show() 
+
 
         if video == True:
             self.imgs = []

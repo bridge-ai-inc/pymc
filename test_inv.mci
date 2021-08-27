@@ -1,0 +1,22 @@
+time_min
+nbins
+nbins
+nbins
+binsize
+binsize
+binsize
+mc_flag = 0               // uniform beam
+launchflag = 0            // mcxyz calc launch trajectory
+boundaryflag = 2
+xs = 0.00                 // position of source
+ys = 0.00                 // position of source
+zs = 0.001                // position of source
+xfocus = 0.00             // Position of focus
+yfocus = 0.00             // Position of focus
+zfocus = 1000000000000.00 // Position of focus = inf
+ux0 = 0.70                // if launchflag == 1, set values
+uy0 = 0.40                // if launchflag == 1, set values
+uz0 = 0.5916              // if launchflag == 1, set values
+radius = 0.2500           // if mcflag != 2
+waist = 0.2500            // if mcflag != 2
+ntissue = 3

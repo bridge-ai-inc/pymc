@@ -33,7 +33,9 @@ zs          = 0.001;  	% z of source
 % Set position of focus, so mcxyz can calculate launch trajectory
 xfocus      = 0;        % set x,position of focus
 yfocus      = 0;        % set y,position of focus
-zfocus      = inf;    	% set z,position of focus (=inf for collimated beam)
+zfocus      %%%%%%%%%%
+
+% Create tiss= inf;    	% set z,position of focus (=inf for collimated beam)
 
 % only used if mcflag == 0 or 1 or 3 (not 2=isotropic pt.)
 radius      = 0.2500;   % 1/e radius of beam at tissue surface
@@ -48,9 +50,7 @@ uz0         = sqrt(1 - ux0^2 - uy0^2); % such that ux^2 + uy^2 + uz^2 = 1
 
 %%%%%%%%%%%%%%%%%%%%%%%
 % Prepare Monte Carlo % 
-%%%%%%%%%%%%%%%%%%%%%%%
-
-% Create tissue properties
+%%%%%%%%%%%%%ue properties
 tissue = makeCartilageList(nm); % also --> global tissue(1:Nt).s
 Nt = length(tissue);
 for i=1:Nt
