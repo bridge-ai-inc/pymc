@@ -60,7 +60,7 @@ def main():
 
     menu = ["Home", "Login", "SignUp"]
 
-    choice = st.sidebar.selectbox("Menu", menu)
+    choice = st.sidebar.selectbox("Page", menu)
 
     if choice == "Home":
         st.subheader("Home")
@@ -96,7 +96,7 @@ def main():
                 elif task == "Manage":
                     st.subheader("Manage User Database ")
                     user_result = view_all_users()
-                    clean_db = pd.DataFrame(user_result, columns = ["Firstname", "Lastname","Username", "Email", "Password"])
+                    clean_db = pd.DataFrame(user_result, columns = ["Firstname", "Lastname", "Email", "Institution", "Username", "Password"])
                     st.dataframe(clean_db)
 
             else:
